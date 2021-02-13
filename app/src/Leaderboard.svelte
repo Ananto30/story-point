@@ -9,6 +9,7 @@
 </style>
 
 <div
+  id="leaderboard"
   class="uk-card uk-card-default uk-card-body uk-width-2-3@s uk-align-center">
   <div>
     <h5>Pointing Leader Board 😐</h5>

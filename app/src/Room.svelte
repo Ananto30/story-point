@@ -33,6 +33,10 @@
 
   socket.on('endSession', (data) => {
     socket.emit('vote', { name: name, point: point })
+    setTimeout(() => {
+      location.href = '#'
+      location.href = '#leaderboard'
+    }, 1000)
   })
 
   $: leaderboard.sort((a, b) => {
