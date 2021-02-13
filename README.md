@@ -1,16 +1,16 @@
-# Story Pointing
+# Story Pointing 🤷
 
 Oh! The sweating part of agile. This app just allows you to not get biased by others saying this worth less than 1 point. Just vote your point and see the result after the timer.
 
 ```bash
-git clone 
+git clone https://github.com/Ananto30/story-point.git
 cd story-point
 ```
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
 
-## Get started
+## Get started 🚀
 
 ### Run the app along with server
 
@@ -36,8 +36,7 @@ Start the server...
 npm start
 ```
 
-
-## Development tricks
+## Development tricks 🧙
 
 The app can be run with - 
 ```bash
@@ -51,8 +50,8 @@ npm start
 ```
 The rollup will build the js file in realtime and our server can serve that with realtime changes.
 
-## Docker
+## Docker 🚢
 ```bash
 docker build -t story-point .
-docker run --name story-point -p 3000:3000 story-point
+docker run --name story-point -p 3000:3000 -d story-point
 ```
