@@ -12,10 +12,10 @@ const defaultRoomConfig = {
   allowedPointingSystem: ["Fibonacci series", "T-shirt sizing"],
 };
 
-app.use(express.static(path.join(__dirname, "/../public")));
+app.use(express.static(path.join(__dirname, "/../app/public")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/../public/index.html"));
+  res.sendFile(path.join(__dirname + "/../app/public/index.html"));
 });
 
 io.on("connection", (socket) => {
