@@ -50,3 +50,9 @@ cd server
 npm start
 ```
 The rollup will build the js file in realtime and our server can serve that with realtime changes.
+
+## Docker
+```bash
+docker build -t story-point .
+docker run --name story-point -p 3000:3000 story-point
+```
