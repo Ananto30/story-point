@@ -39,10 +39,8 @@
 
   socket.on('endSession', (data) => {
     socket.emit('vote', { name: name, point: point })
-    setTimeout(() => {
-      location.href = '#'
-      location.href = '#leaderboard'
-    }, 1000)
+    let element = document.querySelector("#leaderboard")
+    element.scrollIntoView({ behavior: 'smooth', block: 'center'})
   })
 
   $: leaderboard.sort((a, b) => {
