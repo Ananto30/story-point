@@ -3,8 +3,7 @@
 
   export let socket
   export let showConfig
-  let ps = $roomConfig.pointingSystem
-  let mt = $roomConfig.maxTimerSeconds
+  let ps
 
   function onChange(event) {
     ps = event.currentTarget.value
@@ -12,7 +11,6 @@
 
   function submit() {
     $roomConfig.pointingSystem = ps
-    $roomConfig.maxTimerSeconds = mt
     socket.emit('roomConfigChange', $roomConfig)
     showConfig = false
   }
@@ -33,7 +31,7 @@
         Pointing system
       </label>
       <div class="uk-form-controls">
-        <select class="uk-select" bind:value={ps} on:blur={onChange}>
+        <select class="uk-select" bind:value={$roomConfig.pointingSystem} on:blur={onChange}>
           {#each $roomConfig.allowedPointingSystem as ps}
             <option value={ps}>{ps}</option>
           {/each}
@@ -49,7 +47,7 @@
           class="uk-input"
           id="form-stacked-text"
           type="number"
-          bind:value={mt} />
+          bind:value={$roomConfig.maxTimerSeconds} />
       </div>
     </div>
     <div class="uk-margin">
