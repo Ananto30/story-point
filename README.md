@@ -1,6 +1,12 @@
-# Story Pointing 🤷
+# Story Point 🤷
+
+**Realtime voting (the story points) app.**
 
 Oh! The sweating part of agile. This app just allows you to not get biased by others saying this worth less than 1 point. Just vote your point and see the result after the timer.
+
+<img src="https://media.giphy.com/media/eEV3E9cg179HTgS9g4/giphy.gif">
+
+## Get started 🚀
 
 ```bash
 git clone https://github.com/Ananto30/story-point.git
@@ -8,9 +14,6 @@ cd story-point
 ```
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started 🚀
 
 ### Run the app along with server
 
