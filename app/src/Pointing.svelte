@@ -176,7 +176,6 @@
   <form>
     <div id="form-wrapper">
       <form>
-        <!-- <h1 id="form-title">Select Debt Amount</h1> -->
         <div id="debt-amount-slider">
           {#each optionMapper[$roomConfig.pointingSystem] as p, i}
             <input
@@ -193,3 +192,13 @@
     </div>
   </form>
 </div>
+<br />
+<br />
+<p class="uk-text-center uk-text-meta">
+  <i>
+    **This radio styling is copied from
+    <u>
+      <a href="https://codepen.io/brandonmcconnell/pen/Zqjdmg">here</a>
+    </u>
+  </i>
+</p>

@@ -1,6 +1,6 @@
 <script>
   import Room from './Room.svelte'
-  import RoomPrompt from './RoomPrompt.svelte'
+  import RoomJoin from './RoomJoin.svelte'
   let room
   let name
   let socket
@@ -10,8 +10,8 @@
   h1 {
     color: #ff4000cb;
     text-transform: uppercase;
-    /* font-size: 4em; */
-    /* font-weight: 100; */
+    font-size: 4em;
+    font-weight: 100;
   }
 </style>
 
@@ -22,9 +22,15 @@
   </h1>
 
   {#if !room}
-    <RoomPrompt bind:room bind:name bind:socket />
+    <RoomJoin bind:room bind:name bind:socket />
   {:else}
     <Room bind:room bind:name bind:socket />
   {/if}
 
+  <p class="uk-text-center uk-text-meta uk-margin-bottom">
+    Made with ❤️ by
+    <u>
+      <a href="https://github.com/Ananto30">Ananto</a>
+    </u>
+  </p>
 </div>
