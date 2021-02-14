@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition'
   export let users
 </script>
 
@@ -15,7 +16,7 @@
     <h5>Users in the room</h5>
     <ul class="uk-list uk-list-disc uk-list-primary">
       {#each users as user}
-        <li>{user}</li>
+        <li transition:fade>{user}</li>
       {/each}
     </ul>
   </div>

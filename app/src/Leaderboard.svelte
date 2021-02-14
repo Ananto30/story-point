@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition'
   export let leaderboard
 </script>
 
@@ -9,6 +10,7 @@
 </style>
 
 <div
+  in:fade
   id="leaderboard"
   class="uk-card uk-card-default uk-card-body uk-width-2-3@s uk-align-center">
   <div>

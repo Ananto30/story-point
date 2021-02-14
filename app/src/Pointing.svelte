@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition'
   import { roomConfig } from './store.js'
   export let point
   export let timer
@@ -166,7 +167,7 @@
 </style>
 
 <hr />
-<div class="uk-margin-bottom">
+<div in:fade class="uk-margin-bottom">
   <h5 class="uk-text-center">
     Point the story in
     <span style="font-size: 2em; color: #ff4000cb;">{timer}</span>

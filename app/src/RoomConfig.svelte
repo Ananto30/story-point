@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition'
   import { roomConfig } from './store.js'
 
   export let socket
@@ -23,6 +24,7 @@
 </style>
 
 <div
+  in:fade
   class="uk-card uk-card-default uk-card-body uk-width-1-4@s uk-align-center">
   <h5>Room Configuration</h5>
   <form class="uk-form-stacked">
@@ -31,7 +33,10 @@
         Pointing system
       </label>
       <div class="uk-form-controls">
-        <select class="uk-select" bind:value={$roomConfig.pointingSystem} on:blur={onChange}>
+        <select
+          class="uk-select"
+          bind:value={$roomConfig.pointingSystem}
+          on:blur={onChange}>
           {#each $roomConfig.allowedPointingSystem as ps}
             <option value={ps}>{ps}</option>
           {/each}

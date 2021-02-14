@@ -1,4 +1,6 @@
 <script>
+  import { fade } from 'svelte/transition'
+
   import { roomConfig } from './store.js'
   import RoomConfig from './RoomConfig.svelte'
   import Pointing from './Pointing.svelte'
@@ -57,7 +59,7 @@
   }
 </style>
 
-<div class="uk-flex uk-flex-wrap uk-flex-wrap-stretch uk-flex-around">
+<div in:fade class="uk-flex uk-flex-wrap uk-flex-wrap-stretch uk-flex-around">
   <div
     class="uk-card uk-card-default uk-card-body uk-width-2-3@s uk-align-center">
     <h4 class="uk-text-center">
@@ -66,35 +68,38 @@
     </h4>
 
     {#if timer === 0}
-      <hr />
-      <p>
-        In this room, you with your fellow co-workers (who thinks story point
-        should be less than 1) can point on a single story and then view
-        everyones points (the leaderboard) 👇.
-      </p>
-      <p>
-        If you click `start`, all the people in the room will be taken to the
-        pointing menu,
-        <b>so ask them before you press `start`</b>
-        .
-      </p>
-      <p>
-        <i>
-          In this room you will get
-          <b>{$roomConfig.maxTimerSeconds} seconds</b>
-          to point the story and the pointing system will be based on
-          <b>{$roomConfig.pointingSystem}</b>
+      <div in:fade>
+        <hr />
+        <p>
+          In this room, you with your fellow co-workers (who thinks story point
+          should be less than 1) can point on a single story and then view
+          everyones points (the leaderboard) 👇.
+        </p>
+        <p>
+          If you click `start`, all the people in the room will be taken to the
+          pointing menu,
+          <b>so ask them before you press `start`</b>
           .
-        </i>
-      </p>
-      <hr />
+        </p>
+        <p>
+          <i>
+            In this room you will get
+            <b>{$roomConfig.maxTimerSeconds} seconds</b>
+            to point the story and the pointing system will be based on
+            <b>{$roomConfig.pointingSystem}</b>
+            .
+          </i>
+        </p>
+        <hr />
 
-      <h5 class="uk-text-center uk-margin-remove-top">
-        To start a voting session, press
-        <button class="uk-button uk-button-default" on:click={startSession}>
-          Start!
-        </button>
-      </h5>
+        <h5 class="uk-text-center uk-margin-remove-top">
+          To start a voting session, press
+          <button class="uk-button uk-button-default" on:click={startSession}>
+            Start!
+          </button>
+        </h5>
+
+      </div>
     {:else}
       <Pointing bind:point bind:timer />
     {/if}
