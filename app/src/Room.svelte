@@ -17,10 +17,6 @@
   let leaderboard = []
   let users = []
 
-  socket.on('roomConfig', (data) => {
-    $roomConfig = data
-  })
-
   socket.on('users', (data) => {
     users = data
   })
