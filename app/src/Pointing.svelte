@@ -3,14 +3,7 @@
   import { roomConfig } from './store.js'
   export let point
   export let timer
-
-  let fibonacciPointing = [1, 2, 3, 5, 8, 13, 21]
-  let tShirtPointing = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
-
-  let optionMapper = {
-    'Fibonacci series': fibonacciPointing,
-    'T-shirt sizing': tShirtPointing,
-  }
+  export let optionMapper
 
   function onChange(event) {
     point = event.currentTarget.value
@@ -18,9 +11,6 @@
 </script>
 
 <style>
-  h5 {
-    font-weight: 600;
-  }
   #form-wrapper {
     width: 100%;
     display: flex;
@@ -135,44 +125,19 @@
     transform: translate(-50%, 45px) scale(1.1);
     transition: all 0.15s linear;
   }
-  @-webkit-keyframes spin {
-    from {
-      transform: rotate(0deg);
-      width: 24px;
-      opacity: 1;
-      margin-right: 12px;
-    }
-    to {
-      transform: rotate(360deg);
-      width: 24px;
-      opacity: 1;
-      margin-right: 12px;
-    }
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-      width: 24px;
-      opacity: 1;
-      margin-right: 12px;
-    }
-    to {
-      transform: rotate(360deg);
-      width: 24px;
-      opacity: 1;
-      margin-right: 12px;
-    }
+  .timer {
+    font-size: 1.2em;
+    color: #ff4000cb;
   }
 </style>
 
 <hr />
 <div in:fade class="uk-margin-bottom">
-  <h5 class="uk-text-center">
+  <h3 class="uk-text-center">
     Point the story in
-    <span style="font-size: 2em; color: #ff4000cb;">{timer}</span>
+    <span class="timer">{timer}</span>
     seconds 😰
-  </h5>
+  </h3>
 
   <form>
     <div id="form-wrapper">

@@ -17,6 +17,14 @@
   let leaderboard = []
   let users = []
 
+  let fibonacciPointing = [1, 2, 3, 5, 8, 13, 21]
+  let tShirtPointing = ['XS', 'S', 'M', 'L', 'XL', 'XXL']
+
+  let optionMapper = {
+    'Fibonacci series': fibonacciPointing,
+    'T-shirt sizing': tShirtPointing,
+  }
+
   socket.on('users', (data) => {
     users = data
   })
@@ -38,7 +46,11 @@
   })
 
   $: leaderboard.sort((a, b) => {
-    return a.point - b.point
+    if ($roomConfig.pointingSystem === 'Fibonacci series') {
+      return a.point - b.point
+    } else {
+      return tShirtPointing.indexOf(a.point) - tShirtPointing.indexOf(b.point)
+    }
   })
 
   function startSession() {
@@ -97,7 +109,7 @@
 
       </div>
     {:else}
-      <Pointing bind:point bind:timer />
+      <Pointing bind:point bind:timer bind:optionMapper />
     {/if}
   </div>
 
