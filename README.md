@@ -4,7 +4,7 @@
 
 Oh! The sweating part of agile. This app just allows you to not get biased by others saying this worth less than 1 point. Just vote your point and see the result after the timer.
 
-<img src="https://media.giphy.com/media/eEV3E9cg179HTgS9g4/giphy.gif">
+<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/iwabgt5vv36yasghbbdc.gif">
 
 ## Get started 🚀
 
