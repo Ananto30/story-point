@@ -1,14 +1,57 @@
 <script>
-  import { fade } from 'svelte/transition'
-  import { roomConfig } from './store.js'
-  export let point
-  export let timer
-  export let optionMapper
+  import { fade } from "svelte/transition";
+  import { roomConfig } from "./store.js";
+  export let point;
+  export let timer;
+  export let optionMapper;
+
+  point = undefined;
 
   function onChange(event) {
-    point = event.currentTarget.value
+    point = event.currentTarget.value;
   }
 </script>
+
+<hr />
+<div in:fade class="uk-margin-bottom">
+  <h3 class="uk-text-center">
+    Point the story in
+    <span class="timer">{timer}</span>
+    seconds 😰
+  </h3>
+
+  <form>
+    <div id="form-wrapper">
+      <form>
+        <div id="debt-amount-slider">
+          {#each optionMapper[$roomConfig.pointingSystem] as p, i}
+            <input
+              type="radio"
+              name="debt-amount"
+              id={i}
+              value={p}
+              required
+              on:change={onChange}
+            />
+            <label for={i} data-debt-amount={p} />
+          {/each}
+        </div>
+      </form>
+    </div>
+  </form>
+</div>
+<br />
+<br />
+<p class="uk-text-center uk-text-meta">
+  <i>
+    **This radio styling is copied from
+    <u>
+      <a href="https://codepen.io/brandonmcconnell/pen/Zqjdmg" target="_blank"
+        >here</a
+      >
+    </u>
+  </i>
+</p>
 
 <style>
   #form-wrapper {
@@ -39,7 +82,7 @@
     user-select: none;
   }
   form #debt-amount-slider::before {
-    content: ' ';
+    content: " ";
     position: absolute;
     height: 2px;
     width: 100%;
@@ -83,7 +126,7 @@
     transition: all 0.15s ease-in-out;
   }
   form #debt-amount-slider label::after {
-    content: ' ';
+    content: " ";
     position: absolute;
     left: 50%;
     top: 50%;
@@ -130,41 +173,3 @@
     color: #ff4000cb;
   }
 </style>
-
-<hr />
-<div in:fade class="uk-margin-bottom">
-  <h3 class="uk-text-center">
-    Point the story in
-    <span class="timer">{timer}</span>
-    seconds 😰
-  </h3>
-
-  <form>
-    <div id="form-wrapper">
-      <form>
-        <div id="debt-amount-slider">
-          {#each optionMapper[$roomConfig.pointingSystem] as p, i}
-            <input
-              type="radio"
-              name="debt-amount"
-              id={i}
-              value={p}
-              required
-              on:change={onChange} />
-            <label for={i} data-debt-amount={p} />
-          {/each}
-        </div>
-      </form>
-    </div>
-  </form>
-</div>
-<br />
-<br />
-<p class="uk-text-center uk-text-meta">
-  <i>
-    **This radio styling is copied from
-    <u>
-      <a href="https://codepen.io/brandonmcconnell/pen/Zqjdmg">here</a>
-    </u>
-  </i>
-</p>

@@ -1,39 +1,34 @@
 <script>
-  import { fade } from 'svelte/transition'
-  import { roomConfig } from './store.js'
+  import { fade } from "svelte/transition";
+  import { roomConfig } from "./store.js";
 
-  export let socket
-  export let showConfig
-  let ps = $roomConfig.pointingSystem
-  let mt = $roomConfig.maxTimerSeconds
+  export let socket;
+  export let showConfig;
+  let ps = $roomConfig.pointingSystem;
+  let mt = $roomConfig.maxTimerSeconds;
 
-  socket.on('roomConfig', (data) => {
-    $roomConfig = data
-    ps = $roomConfig.pointingSystem
-    mt = $roomConfig.maxTimerSeconds
-  })
+  socket.on("roomConfig", (data) => {
+    $roomConfig = data;
+    ps = $roomConfig.pointingSystem;
+    mt = $roomConfig.maxTimerSeconds;
+  });
 
   function onChange(event) {
-    ps = event.currentTarget.value
+    ps = event.currentTarget.value;
   }
 
   function submit() {
-    $roomConfig.pointingSystem = ps
-    $roomConfig.maxTimerSeconds = mt
-    socket.emit('roomConfigChange', $roomConfig)
-    showConfig = false
+    $roomConfig.pointingSystem = ps;
+    $roomConfig.maxTimerSeconds = mt;
+    socket.emit("roomConfigChange", $roomConfig);
+    showConfig = false;
   }
 </script>
 
-<style>
-  h5 {
-    font-weight: 600;
-  }
-</style>
-
 <div
   in:fade
-  class="uk-card uk-card-default uk-card-body uk-width-1-4@s uk-align-center">
+  class="uk-card uk-card-default uk-card-body uk-width-1-4@s uk-align-center"
+>
   <h5>Room Configuration</h5>
   <form class="uk-form-stacked">
     <div class="uk-margin">
@@ -57,15 +52,23 @@
           class="uk-input"
           id="form-stacked-text"
           type="number"
-          bind:value={mt} />
+          bind:value={mt}
+        />
       </div>
     </div>
     <div class="uk-margin">
       <button
         class="uk-button uk-width-1-1 uk-button-default uk-button-small"
-        on:click|preventDefault={submit}>
+        on:click|preventDefault={submit}
+      >
         Save
       </button>
     </div>
   </form>
 </div>
+
+<style>
+  h5 {
+    font-weight: 600;
+  }
+</style>

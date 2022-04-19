@@ -1,19 +1,10 @@
 <script>
-  import Room from './Room.svelte'
-  import RoomJoin from './RoomJoin.svelte'
-  let room
-  let name
-  let socket
+  import Room from "./Room.svelte";
+  import RoomJoin from "./RoomJoin.svelte";
+  let room;
+  let name;
+  let socket;
 </script>
-
-<style>
-  h1 {
-    color: #ff4000cb;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-</style>
 
 <div class="uk-container">
   <br />
@@ -34,3 +25,12 @@
     </u>
   </p>
 </div>
+
+<style>
+  h1 {
+    color: #ff4000cb;
+    text-transform: uppercase;
+    font-size: 4em;
+    font-weight: 100;
+  }
+</style>
