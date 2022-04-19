@@ -1,18 +1,23 @@
 <script>
-  import { fade } from 'svelte/transition'
-  export let leaderboard
-</script>
+  import { fade } from "svelte/transition";
+  import { roomConfig } from "./store.js";
 
-<style>
-  h5 {
-    font-weight: 600;
-  }
-</style>
+  export let leaderboard;
+
+  $: sortedLeaderboard = leaderboard.sort((a, b) => {
+    if (roomConfig.pointingSystem === "Fibonacci series") {
+      return a.point - b.point;
+    } else {
+      return tShirtPointing.indexOf(a.point) - tShirtPointing.indexOf(b.point);
+    }
+  });
+</script>
 
 <div
   in:fade
   id="leaderboard"
-  class="uk-card uk-card-default uk-card-body uk-width-2-3@s uk-align-center">
+  class="uk-card uk-card-default uk-card-body uk-width-2-3@s uk-align-center"
+>
   <div>
     <h5>Pointing Leader Board 😐</h5>
     <hr />
@@ -30,7 +35,7 @@
             <tr>
               <td>{i + 1}</td>
               <td>{user.name}</td>
-              <td>{user.point}</td>
+              <td>{user.point ? user.point : "Not voted"}</td>
             </tr>
           {/each}
         </tbody>
@@ -40,3 +45,9 @@
     {/if}
   </div>
 </div>
+
+<style>
+  h5 {
+    font-weight: 600;
+  }
+</style>

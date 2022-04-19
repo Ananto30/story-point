@@ -1,20 +1,21 @@
 <script>
-  export let name
-  export let room
-  export let socket
+  export let name;
+  export let room;
+  export let socket;
 
-  let roomName
-  let userName
+  let roomName;
+  let userName;
 
   function submit() {
-    room = roomName
-    name = userName
-    socket = io('', { query: 'room=' + room + '&user=' + name })
+    room = roomName;
+    name = userName;
+    socket = io("", { query: "room=" + room + "&user=" + name });
   }
 </script>
 
 <div
-  class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center">
+  class="uk-card uk-card-default uk-card-body uk-width-1-2@m uk-align-center"
+>
   <p>Use this app to vote without being biased. Steps -</p>
   <ul class="uk-list uk-list-decimal">
     <li>Create a room.</li>
@@ -36,7 +37,8 @@
           type="text"
           placeholder="Your name"
           required
-          bind:value={userName} />
+          bind:value={userName}
+        />
       </div>
 
       <div class="uk-margin">
@@ -45,13 +47,15 @@
           type="text"
           placeholder="Room name"
           required
-          bind:value={roomName} />
+          bind:value={roomName}
+        />
       </div>
 
       <div class="uk-margin">
         <button
           class="uk-button uk-width-1-1 uk-button-default"
-          on:click={submit}>
+          on:click={submit}
+        >
           Join
         </button>
       </div>
