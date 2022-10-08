@@ -62,6 +62,7 @@
   }
 
   form {
+    margin-top: 32px;
     width: 100%;
   }
   form #form-title {
