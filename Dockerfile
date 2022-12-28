@@ -1,4 +1,4 @@
-FROM node:14.13-alpine3.10 as builder
+FROM node:15.14-alpine3.10 as builder
 
 WORKDIR /usr/src/app
 COPY app/package*.json ./
@@ -8,7 +8,7 @@ COPY app/src src
 COPY app/rollup.config.js .
 RUN npm run build
 
-FROM node:14.13-alpine3.10
+FROM node:15.14-alpine3.10
 
 WORKDIR /usr/src/server
 COPY --from=builder /usr/src/app/public /usr/src/app/public
