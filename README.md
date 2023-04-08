@@ -6,55 +6,34 @@ Oh! The sweating part of agile. This app just allows you to not get biased by ot
 
 <img src="https://res.cloudinary.com/dvqpo7nkm/image/upload/v1614755104/projects/iwabgt5vv36yasghbbdc.gif">
 
-## Get started 🚀
+## Getting started 🚀
 
 ```bash
-git clone https://github.com/Ananto30/story-point.git
-cd story-point
+make init
+make start
 ```
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
-### Run the app along with server
+### Manual way 🤷
 
-### App
-Install the dependencies...
-```bash
-cd app
-npm install
-```
-Build the app...
-```bash
-npm run build
-```
+*   Build the app
+    ```bash
+    cd app
+    npm install
+    npm run build
+    ```
 
-### Server
-Install the dependencies...
-```bash
-cd server
-npm install
-```
-Start the server...
-```bash
-npm start
-```
-
-## Development tricks 🧙
-
-The app can be run with - 
-```bash
-cd app
-npm run dev
-```
-And the server can be run and serve the index.html file
-```bash
-cd server
-npm start
-```
-The rollup will build the js file in realtime and our server can serve that with realtime changes.
+*   Run the server
+    ```bash
+    cd server
+    npm install
+    npm start
+    ```
 
 ## Docker 🚢
+
 ```bash
-docker build -t story-point .
-docker run --name story-point -p 3000:3000 -d story-point
+make docker-build
+make docker-run
 ```
