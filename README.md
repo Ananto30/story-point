@@ -1,6 +1,8 @@
 # Story Point 🤷
 
+[![Depfu](https://badges.depfu.com/badges/62b7e29359598f2124622fc739433ac9/overview.svg)](https://depfu.com/github/Ananto30/story-point?project_id=34509)
 [![docker](https://img.shields.io/docker/image-size/ananto30/story-point?logo=docker)](https://hub.docker.com/r/ananto30/story-point)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/169737f5a3064d2c89939885d767b231)](https://app.codacy.com/gh/Ananto30/story-point/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 **Realtime voting (the story points) app.**
 
