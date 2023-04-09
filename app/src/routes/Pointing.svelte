@@ -1,21 +1,13 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { roomConfig } from './store.js';
+	import type { Option } from './types';
 
-	export let point;
-	/**
-	 * @type {number}
-	 */
-	export let timer;
-	/**
-	 * @type {{ [x: string]: any; }}
-	 */
-	export let optionMapper;
+	export let point: number | string;
+	export let timer: number;
+	export let optionMapper: Option;
 
-	/**
-	 * @param {{ currentTarget: { value: any; }; }} event
-	 */
-	function onChange(event) {
+	function updatePoint(event: { currentTarget: { value: string | number } }) {
 		point = event.currentTarget.value;
 	}
 </script>
@@ -33,8 +25,15 @@
 			<form>
 				<div id="debt-amount-slider">
 					{#each optionMapper[$roomConfig.pointingSystem] as p, i}
-						<input type="radio" name="debt-amount" id={i} value={p} required on:change={onChange} />
-						<label for={i} data-debt-amount={p} />
+						<input
+							type="radio"
+							name="debt-amount"
+							id={String(i)}
+							value={p}
+							required
+							on:change={updatePoint}
+						/>
+						<label for={String(i)} data-debt-amount={p} />
 					{/each}
 				</div>
 			</form>

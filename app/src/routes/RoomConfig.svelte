@@ -1,12 +1,11 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { roomConfig } from './store.js';
+	import { roomConfig } from './store';
+	import type { SocketIO } from './types';
 
-	/**
-	 * @type {{ on: (arg0: string, arg1: { (data: any): void; (data: any): void; (data: any): void; (data: any): void; }) => void; emit: (arg0: string, arg1: { name: any; point: any; } | undefined) => void; }}
-	 */
-	export let socket;
-	export let showConfig;
+	export let socket: SocketIO;
+	export let showConfig: boolean;
+
 	let ps = $roomConfig.pointingSystem;
 	let mt = $roomConfig.maxTimerSeconds;
 
@@ -16,10 +15,7 @@
 		mt = $roomConfig.maxTimerSeconds;
 	});
 
-	/**
-	 * @param {{ currentTarget: { value: string; }; }} event
-	 */
-	function onChange(event) {
+	function updatePointSystem(event: { currentTarget: { value: string } }) {
 		ps = event.currentTarget.value;
 	}
 
@@ -37,7 +33,7 @@
 		<div class="uk-margin">
 			<label class="uk-form-label" for="form-stacked-text"> Pointing system </label>
 			<div class="uk-form-controls">
-				<select class="uk-select" bind:value={ps} on:blur={onChange}>
+				<select class="uk-select" bind:value={ps} on:blur={updatePointSystem}>
 					{#each $roomConfig.allowedPointingSystem as ps}
 						<option value={ps}>{ps}</option>
 					{/each}

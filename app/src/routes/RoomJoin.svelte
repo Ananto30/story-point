@@ -1,16 +1,10 @@
-<script>
+<script lang="ts">
 	export let name;
 	export let room;
 	export let socket;
 
-	/**
-	 * @type {string}
-	 */
-	let roomName;
-	/**
-	 * @type {string}
-	 */
-	let userName;
+	let roomName: string;
+	let userName: string;
 
 	function submit() {
 		room = roomName;

@@ -1,21 +1,29 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { roomConfig } from './store.js';
+	import type { UserPoint } from './types';
 
-	/**
-	 * @type {any[]}
-	 */
-	export let leaderboard;
+	export let leaderboard: UserPoint[];
 
-	$: sortedLeaderboard = leaderboard.sort(
-		(/** @type {{ point: number; }} */ a, /** @type {{ point: number; }} */ b) => {
-			if (roomConfig.pointingSystem === 'Fibonacci series') {
-				return a.point - b.point;
-			} else {
-				return tShirtPointing.indexOf(a.point) - tShirtPointing.indexOf(b.point);
-			}
+	$: leaderboard.sort((a: UserPoint, b: UserPoint) => {
+		if (
+			$roomConfig.pointingSystem === 'Fibonacci series' &&
+			typeof a.point === 'number' &&
+			typeof b.point === 'number'
+		) {
+			return a.point - b.point;
+		} else if (
+			$roomConfig.pointingSystem === 'T-shirt sizing' &&
+			typeof a.point === 'string' &&
+			typeof b.point === 'string'
+		) {
+			return (
+				$roomConfig.tShirtPointing.indexOf(a.point) - $roomConfig.tShirtPointing.indexOf(b.point)
+			);
+		} else {
+			return 0;
 		}
-	);
+	});
 </script>
 
 <div

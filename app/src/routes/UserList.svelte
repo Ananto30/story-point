@@ -1,10 +1,7 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 
-	/**
-	 * @type {string[]}
-	 */
-	export let users;
+	export let users: string[] = [];
 </script>
 
 <div
