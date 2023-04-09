@@ -2,7 +2,7 @@ FROM node:19-alpine as builder
 
 WORKDIR /app
 COPY app/package*.json .
-RUN npm install --legacy-peer-deps
+RUN npm ci --silent
 
 COPY app/ .
 RUN npm run build
@@ -11,10 +11,10 @@ FROM node:15.14-alpine3.10
 
 WORKDIR /server
 COPY server/package*.json .
-RUN npm install --legacy-peer-deps
+RUN npm ci --silent
 
 COPY --from=builder /app/build /app/build
-COPY server .
+COPY server/index.js .
 
 EXPOSE 3000
 USER node

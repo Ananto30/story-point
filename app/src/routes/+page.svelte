@@ -1,19 +1,11 @@
-<script>
+<script lang="ts">
 	import Room from './Room.svelte';
 	import RoomJoin from './RoomJoin.svelte';
+	import type { SocketIO } from './types';
 
-	/**
-	 * @type {string}
-	 */
-	let room;
-	/**
-	 * @type {string}
-	 */
-	let name;
-	/**
-	 * @type {any}
-	 */
-	let socket;
+	let room: string;
+	let name: string;
+	let socket: SocketIO;
 </script>
 
 <div class="uk-container">

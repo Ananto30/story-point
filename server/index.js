@@ -51,6 +51,7 @@ io.on("connection", (socket) => {
 
   socket.on("startSession", (data) => {
     let timer = ROOM[roomName]["roomConfig"]["maxTimerSeconds"];
+    ROOM[roomName]["leaderboard"] = [];
 
     io.to(roomName).emit("timer", timer);
     const interval = setInterval(() => {
@@ -62,7 +63,6 @@ io.on("connection", (socket) => {
     }, 1000);
     setTimeout(() => {
       io.to(roomName).emit("endSession");
-      ROOM[roomName]["leaderboard"] = [];
     }, ROOM[roomName]["roomConfig"]["maxTimerSeconds"] * 1000);
   });
 

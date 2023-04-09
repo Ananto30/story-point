@@ -1,78 +1,52 @@
-<script>
+<script lang="ts">
 	import { fade } from 'svelte/transition';
 
-	import { roomConfig } from './store.js';
+	import { roomConfig } from './store';
 	import RoomConfig from './RoomConfig.svelte';
 	import Pointing from './Pointing.svelte';
 	import UserList from './UserList.svelte';
 	import Leaderboard from './Leaderboard.svelte';
+	import type { SocketIO, UserPoint } from './types';
 
-	/**
-	 * @type {string}
-	 */
-	export let room;
-	/**
-	 * @type {string}
-	 */
-	export let name;
-	/**
-	 * @type {{ on: (arg0: string, arg1: { (data: any): void; (data: any): void; (data: any): void; (data: any): void; }) => void; emit: (arg0: string, arg1: { name: any; point: any; } | undefined) => void; }}
-	 */
-	export let socket;
+	export let room: string;
+	export let name: string;
+	export let socket: SocketIO;
 
-	/**
-	 * @type {string}
-	 */
-	let point;
+	let point: string | number = '';
 	let timer = 0;
 	let showConfig = false;
-	/**
-	 * @type {any[]}
-	 */
-	let leaderboard = [];
-	/**
-	 * @type {never[]}
-	 */
-	let users = [];
-
-	let fibonacciPointing = [1, 2, 3, 5, 8, 13, 21];
-	let tShirtPointing = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+	let leaderboard: UserPoint[] = [];
+	let users: string[] = [];
 
 	let optionMapper = {
-		'Fibonacci series': fibonacciPointing,
-		'T-shirt sizing': tShirtPointing
+		'Fibonacci series': $roomConfig.fibonacciPointing,
+		'T-shirt sizing': $roomConfig.tShirtPointing
 	};
 
-	socket.on('users', (/** @type {any[]} */ data) => {
+	socket.on('users', (data: string[]) => {
 		users = data;
 	});
 
-	socket.on('timer', (/** @type {number} */ data) => {
+	socket.on('timer', (data: number) => {
 		timer = data;
 	});
 
-	socket.on('leaderboard', (/** @type {any[]} */ data) => {
+	socket.on('leaderboard', (data: UserPoint[]) => {
 		leaderboard = data;
 	});
 
-	socket.on('endSession', (/** @type {any} */ data) => {
+	socket.on('endSession', () => {
 		socket.emit('vote', { name: name, point: point });
+		point = '';
+		
 		setTimeout(() => {
 			let element = document.querySelector('#leaderboard');
-			element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
 		}, 1000);
 	});
 
-	$: leaderboard.sort((a, b) => {
-		if ($roomConfig.pointingSystem === 'Fibonacci series') {
-			return a.point - b.point;
-		} else {
-			return tShirtPointing.indexOf(a.point) - tShirtPointing.indexOf(b.point);
-		}
-	});
-
 	function startSession() {
-		socket.emit('startSession');
+		socket.emit('startSession', undefined);
 	}
 </script>
 
