@@ -6,22 +6,28 @@
 version: 2
 updates:
   - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/app" # Location of package manifests
+    schedule:
+      interval: "monthly"
     groups:
       dependencies:
-        directory: "/app" # Location of package manifests
-        schedule:
-          interval: "monthly"
-
+        patterns:
+          - "*"
+        
   - package-ecosystem: "npm" # See documentation for possible values
+    directory: "/server" # Location of package manifests
+    schedule:
+      interval: "monthly"
     groups:
       dependencies:
-        directory: "/server" # Location of package manifests
-        schedule:
-          interval: "monthly"
+        patterns:
+          - "*"
 
   - package-ecosystem: "docker" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "monthly"
     groups:
       dependencies:
-        directory: "/" # Location of package manifests
-        schedule:
-          interval: "monthly"
+        patterns:
+          - "*"
