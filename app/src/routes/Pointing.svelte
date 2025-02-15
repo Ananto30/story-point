@@ -12,7 +12,6 @@
 	}
 </script>
 
-<hr />
 <div in:fade class="uk-margin-bottom">
 	<h3 class="uk-text-center">
 		Point the story in

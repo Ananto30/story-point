@@ -8,6 +8,10 @@ start:
 	cd ./app && npm run build
 	cd ./server && npm start
 
+test:
+	cd ./app && npm test
+	cd ./server && npm test
+
 docker-build:
 	docker build -t story-point .
 

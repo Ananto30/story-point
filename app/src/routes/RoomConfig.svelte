@@ -9,11 +9,20 @@
 	let ps = $roomConfig.pointingSystem;
 	let mt = $roomConfig.maxTimerSeconds;
 
+	let initialPs = ps;
+	let initialMt = mt;
+	let hasUnsavedChanges = false;
+
 	socket.on('roomConfig', (data) => {
 		$roomConfig = data;
 		ps = $roomConfig.pointingSystem;
 		mt = $roomConfig.maxTimerSeconds;
+		initialPs = ps;
+		initialMt = mt;
+		hasUnsavedChanges = false;
 	});
+
+	$: hasUnsavedChanges = ps !== initialPs || mt !== initialMt;
 
 	function updatePointSystem(event: { currentTarget: { value: string } }) {
 		ps = event.currentTarget.value;
@@ -24,37 +33,45 @@
 		$roomConfig.maxTimerSeconds = mt;
 		socket.emit('roomConfigChange', $roomConfig);
 		showConfig = false;
+		hasUnsavedChanges = false;
 	}
 </script>
 
-<div in:fade class="uk-card uk-card-default uk-card-body uk-width-1-4@s uk-align-center">
-	<h5>Room Configuration</h5>
-	<form class="uk-form-stacked">
-		<div class="uk-margin">
-			<label class="uk-form-label" for="form-stacked-text"> Pointing system </label>
-			<div class="uk-form-controls">
-				<select name="pointingSystem" class="uk-select" bind:value={ps} on:blur={updatePointSystem}>
-					{#each $roomConfig.allowedPointingSystem as ps}
-						<option value={ps}>{ps}</option>
-					{/each}
-				</select>
-			</div>
+<div in:fade class="bg-white shadow-md rounded-xl p-6 w-full max-w-80">
+	<h5 class="text-md font-semibold text-gray-800 mb-4">Room Configuration</h5>
+	<form class="space-y-4">
+		<div>
+			<label class="block text-sm font-medium text-gray-700" for="pointingSystem">
+				Pointing system
+			</label>
+			<select
+				name="pointingSystem"
+				class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+				bind:value={ps}
+				on:change={updatePointSystem}
+			>
+				{#each $roomConfig.allowedPointingSystem as ps}
+					<option value={ps}>{ps}</option>
+				{/each}
+			</select>
 		</div>
-		<div class="uk-margin">
-			<label class="uk-form-label" for="form-stacked-text">Pointing time (in seconds)</label>
-			<div class="uk-form-controls">
-				<input
-					name="pointingTime"
-					class="uk-input"
-					id="form-stacked-text"
-					type="number"
-					bind:value={mt}
-				/>
-			</div>
+		<div>
+			<label class="block text-sm font-medium text-gray-700" for="pointingTime">
+				Pointing time (in seconds)
+			</label>
+			<input
+				name="pointingTime"
+				class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+				type="number"
+				bind:value={mt}
+			/>
 		</div>
-		<div class="uk-margin">
+		{#if hasUnsavedChanges}
+			<div class="text-red-500 text-sm">You have unsaved changes.</div>
+		{/if}
+		<div>
 			<button
-				class="uk-button uk-width-1-1 uk-button-default uk-button-small"
+				class="w-full border hover:bg-gray-800 hover:text-white font-semibold py-2 px-4 rounded-lg transition hover:cursor-pointer"
 				on:click|preventDefault={submit}
 			>
 				Save
@@ -62,9 +79,3 @@
 		</div>
 	</form>
 </div>
-
-<style>
-	h5 {
-		font-weight: 600;
-	}
-</style>

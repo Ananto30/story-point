@@ -8,32 +8,21 @@
 	let socket: SocketIO;
 </script>
 
-<div class="uk-container">
-	<br />
-	<h1 class="uk-heading-line uk-text-center">
-		<span>The Story Pointing 🤦‍♂️</span>
-	</h1>
+<div class="mx-auto p-8 bg-gray-100 min-h-screen">
+	<div class="container mx-auto">
+		<h1 class="text-lg font-bold text-gray-800">The Story Pointing 🤦‍♂️</h1>
 
-	{#if !room}
-		<RoomJoin bind:room bind:name bind:socket />
-	{:else}
-		<Room bind:room bind:name bind:socket />
-	{/if}
+		<div>
+			{#if !room}
+				<RoomJoin bind:room bind:name bind:socket />
+			{:else}
+				<Room bind:room bind:name bind:socket />
+			{/if}
+		</div>
 
-	<p class="uk-text-center uk-text-meta uk-margin-bottom">
-		Made with ❤️ by
-		<u>
-			<a href="https://github.com/Ananto30">Ananto</a>
-		</u>
-	</p>
+		<p class="text-gray-500 text-sm bottom-0 right-0 fixed p-4">
+			Made with ❤️ by
+			<a class="underline" href="https://github.com/Ananto30">Azizul</a>
+		</p>
+	</div>
 </div>
-
-<style>
-	h1 {
-		color: #ff4000cb;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-		margin-bottom: 64px;
-	}
-</style>
