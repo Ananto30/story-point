@@ -30,4 +30,5 @@ jobs:
 
     - name: Run tests
       run: |
+        npx playwright install
         make test
