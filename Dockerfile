@@ -14,7 +14,7 @@ COPY server/package*.json .
 RUN npm ci
 
 COPY --from=builder /app/build /app/build
-COPY server/index.js .
+COPY server/index.mjs .
 
 EXPOSE 3000
 USER node
