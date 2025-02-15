@@ -33,7 +33,7 @@
 		<div class="uk-margin">
 			<label class="uk-form-label" for="form-stacked-text"> Pointing system </label>
 			<div class="uk-form-controls">
-				<select class="uk-select" bind:value={ps} on:blur={updatePointSystem}>
+				<select name="pointingSystem" class="uk-select" bind:value={ps} on:blur={updatePointSystem}>
 					{#each $roomConfig.allowedPointingSystem as ps}
 						<option value={ps}>{ps}</option>
 					{/each}
@@ -41,9 +41,15 @@
 			</div>
 		</div>
 		<div class="uk-margin">
-			<label class="uk-form-label" for="form-stacked-text"> Pointing time (in seconds) </label>
+			<label class="uk-form-label" for="form-stacked-text">Pointing time (in seconds)</label>
 			<div class="uk-form-controls">
-				<input class="uk-input" id="form-stacked-text" type="number" bind:value={mt} />
+				<input
+					name="pointingTime"
+					class="uk-input"
+					id="form-stacked-text"
+					type="number"
+					bind:value={mt}
+				/>
 			</div>
 		</div>
 		<div class="uk-margin">

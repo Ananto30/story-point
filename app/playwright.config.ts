@@ -2,8 +2,8 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	webServer: {
-		command: 'npm run build && npm run preview',
-		port: 4173
+		command: 'node ../server/index.mjs',
+		port: 3000
 	},
 	testDir: 'tests',
 	testMatch: /.*\.js/
