@@ -19,28 +19,15 @@ jobs:
       with:
         node-version: '20'
 
-    - name: APP - Install dependencies
+    - name: Install dependencies
       run: |
-        cd app
-        npm install
+        make init
 
     - name: APP - Build the project
       run: |
         cd app
         npm run build
 
-    - name: APP - Run test
+    - name: Run tests
       run: |
-        cd app
-        npx playwright install
-        npm run test
-
-    - name: SERVER - Install dependencies
-      run: |
-        cd server
-        npm install
-
-    - name: SERVER - Run test
-      run: |
-        cd server
-        npm run test
+        make test
