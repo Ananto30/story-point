@@ -9,7 +9,7 @@ start:
 	cd ./server && npm start
 
 test:
-	cd ./app && npm test
+	cd ./app && npx playwright install && npm test
 	cd ./server && npm test
 
 docker-build:
