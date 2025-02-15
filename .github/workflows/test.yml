@@ -1,0 +1,46 @@
+name: Test on Package Update
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '19'
+
+    - name: APP - Install dependencies
+      run: |
+        cd app
+        npm install
+
+    - name: APP - Build the project
+      run: |
+        cd app
+        npm run build
+
+    - name: APP - Run basic test
+      run: |
+        cd app
+        npx playwright install
+        npm run test
+
+    - name: SERVER - Install dependencies
+      run: |
+        cd server
+        npm install
+
+    - name: SERVER - Run basic test
+      run: |
+        cd server
+        npm run test

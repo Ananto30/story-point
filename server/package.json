@@ -1,16 +1,25 @@
 {
-  "name": "backend",
+  "name": "storypoint-backend",
   "version": "1.0.0",
   "description": "Backend of story-point",
-  "main": "index.js",
+  "main": "index.mjs",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.mjs",
+    "test": "mocha",
+    "format": "prettier --write ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
     "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^5.1.1",
+    "mocha": "^11.1.0",
+    "prettier": "^3.5.1",
+    "socket.io-client": "^4.8.1"
   }
 }

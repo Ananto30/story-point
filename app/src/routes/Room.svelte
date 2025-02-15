@@ -38,7 +38,7 @@
 	socket.on('endSession', () => {
 		socket.emit('vote', { name: name, point: point });
 		point = '';
-		
+
 		setTimeout(() => {
 			let element = document.querySelector('#leaderboard');
 			if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
