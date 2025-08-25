@@ -1,16 +1,16 @@
 SHELL := /bin/bash
 
 init:
-	cd ./app && npm install
-	cd ./server && npm install
+	cd ./app && pnpm install
+	cd ./server && pnpm install
 
 start:
-	cd ./app && npm run build
-	cd ./server && npm start
+	cd ./app && pnpm build
+	cd ./server && pnpm start
 
 test:
-	cd ./app && npx playwright install && npm test
-	cd ./server && npm test
+	cd ./app && npx playwright install && pnpm test
+	cd ./server && pnpm test
 
 docker-build:
 	docker build -t story-point .

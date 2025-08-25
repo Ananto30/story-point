@@ -64,7 +64,7 @@
 
 	<!-- middle -->
 	<div class="w-full flex flex-col gap-6">
-		<div class="bg-white shadow-md rounded-xl p-8 w-full max-w-xl flex flex-col gap-6 mx-auto">
+		<div class="bg-white shadow-md rounded-xl p-8 w-full max-w-3xl flex flex-col gap-6 mx-auto">
 			{#if timer === 0}
 				<div in:fade class="p-4 bg-gray-100 rounded-lg flex flex-col gap-4">
 					<p class="text-gray-700 leading-relaxed">

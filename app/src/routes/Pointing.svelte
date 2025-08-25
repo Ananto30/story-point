@@ -19,7 +19,7 @@
 		seconds 😰
 	</h3>
 
-	<form>
+	<div>
 		<div id="form-wrapper">
 			<form>
 				<div id="debt-amount-slider">
@@ -37,7 +37,7 @@
 				</div>
 			</form>
 		</div>
-	</form>
+	</div>
 </div>
 <br />
 <br />
