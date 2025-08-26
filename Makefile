@@ -1,8 +1,8 @@
 SHELL := /bin/bash
 
 init:
-	cd ./app && pnpm install
-	cd ./server && pnpm install
+	cd ./app && pnpm install --frozen-lockfile
+	cd ./server && pnpm install --frozen-lockfile
 
 start:
 	cd ./app && pnpm build
