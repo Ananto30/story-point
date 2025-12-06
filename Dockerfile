@@ -6,7 +6,7 @@ ARG PNPM_VERSION=9.12.0
 ############################
 # 1) APP BUILD (Svelte/Vite)
 ############################
-FROM node:22-alpine AS app-builder
+FROM node:24-alpine AS app-builder
 ARG PNPM_VERSION
 WORKDIR /app
 
@@ -29,7 +29,7 @@ RUN pnpm build
 #########################################
 # 2) SERVER DEPS (production dependencies)
 #########################################
-FROM node:22-alpine AS server-deps
+FROM node:24-alpine AS server-deps
 ARG PNPM_VERSION
 WORKDIR /server
 
@@ -46,7 +46,7 @@ RUN pnpm install --prod --frozen-lockfile
 ############################
 # 3) RUNTIME (small & clean)
 ############################
-FROM node:22-alpine
+FROM node:24-alpine
 ARG PNPM_VERSION
 ENV NODE_ENV=production
 WORKDIR /server
