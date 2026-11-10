@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Pick a pnpm version once and reuse it
-ARG PNPM_VERSION=9.12.0
+ARG PNPM_VERSION=12.18.0
 
 ############################
 # 1) APP BUILD (Svelte/Vite)
@@ -25,7 +25,6 @@ COPY app/ .
 RUN pnpm install --frozen-lockfile
 RUN pnpm build
 
-
 #########################################
 # 2) SERVER DEPS (production dependencies)
 #########################################
@@ -41,7 +40,6 @@ COPY server/pnpm-lock.yaml server/package.json ./
 # Only production deps for the server runtime
 RUN pnpm fetch --prod
 RUN pnpm install --prod --frozen-lockfile
-
 
 ############################
 # 3) RUNTIME (small & clean)

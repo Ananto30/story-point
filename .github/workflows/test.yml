@@ -1,10 +1,10 @@
-name: Test on Package Update
+name: Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -17,14 +17,14 @@ jobs:
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 12
           run_install: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'pnpm'
+          node-version: "24"
+          cache: pnpm
           cache-dependency-path: |
             app/pnpm-lock.yaml
             server/pnpm-lock.yaml
@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: make init
 
-      - name: APP - Build the project
+      - name: Build app
         working-directory: app
         run: pnpm build
 

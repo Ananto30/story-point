@@ -1,21 +1,7 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/app" # Location of package manifests
-    schedule:
-      interval: "monthly"
-    groups:
-      dependencies:
-        patterns:
-          - "*"
-        
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/server" # Location of package manifests
+  - package-ecosystem: "npm"
+    directory: "/app"
     schedule:
       interval: "monthly"
     groups:
@@ -23,8 +9,26 @@ updates:
         patterns:
           - "*"
 
-  - package-ecosystem: "docker" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "npm"
+    directory: "/server"
+    schedule:
+      interval: "monthly"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
       interval: "monthly"
     groups:

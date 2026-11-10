@@ -32,7 +32,7 @@
 							required
 							on:change={updatePoint}
 						/>
-						<label for={String(i)} data-debt-amount={p} />
+						<label for={String(i)} data-debt-amount={p}></label>
 					{/each}
 				</div>
 			</form>
